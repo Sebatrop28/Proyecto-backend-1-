@@ -22,3 +22,10 @@ def listar():
 @app.post("/productos")
 def crear(item: dict):
     return supabase.table("productos").insert(item).execute().data
+@app.put("/productos/{id}")
+def actualizar(id: int, item: dict):
+    return supabase.table("productos").update(item).eq("id", id).execute().data
+
+@app.delete("/productos/{id}")
+def eliminar(id: int):
+    return supabase.table("productos").delete().eq("id", id).execute().data
